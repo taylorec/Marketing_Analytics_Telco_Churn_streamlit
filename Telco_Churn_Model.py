@@ -1,5 +1,6 @@
 import streamlit as st
 import joblib
+import pandas as pd
 
 st.title("Customer Churn Prediction")
 st.write("This model predicts if a customer will churn.")
@@ -28,9 +29,11 @@ elif Complaint_Code == 'Moving':
 elif Complaint_Code == 'Pricing':
     Complaint_Code = 5
     
-prediction = loaded_GBC.predict([[Avg_Days_Delinquent,Percent_Increase_MOM, 
+data = pd.DataFrame([[Avg_Days_Delinquent,Percent_Increase_MOM, 
                                   Avg_Calls_Weekdays,Current_Bill_Amt,
                                   Avg_Calls,Complaint_Code,Account_Age]])
+    
+prediction = loaded_GBC.predict(data)
 if prediction == 0:
     prediction = 'No, this model predicts the customer will not churn.'
 else: 
