@@ -8,7 +8,7 @@ loaded_GBC = joblib.load('GBC.joblib')
 
 Avg_Calls = st.number_input('Average number of calls made', min_value=0)
 Complaint_Code = st.selectbox('Complaint type', ['Billing Problem', 'Call Quality', 'Moving', 'Check Account', 'Inaccurate Sales Information', 'Pricing'])
-Account_Age = st.number_input('Age of account', min_value=15)
+Account_Age = st.number_input('Age of account', min_value=10)
 Avg_Days_Delinquent = st.number_input('Average number of days the customer is late on payment', min_value=0)
 Percent_Increase_MOM = st.number_input('Month-over-month percentage billing increase', min_value=-1.0)
 Avg_Calls_Weekdays = st.number_input('Average number of calls made on weekdays', min_value=0)
@@ -28,9 +28,9 @@ elif Complaint_Code == 'Moving':
 elif Complaint_Code == 'Pricing':
     Complaint_Code = 5
     
-prediction = loaded_GBC.predict([[Avg_Days_Delinquent,Percent_Increase_MOM,\
-                 Avg_Calls_Weekdays,Current_Bill_Amt,\
-                 Avg_Calls,Complaint_Code,Account_Age]])
+prediction = loaded_GBC.predict([[Avg_Days_Delinquent,Percent_Increase_MOM, 
+                                  Avg_Calls_Weekdays,Current_Bill_Amt,
+                                  Avg_Calls,Complaint_Code,Account_Age]])
 if prediction == 0:
     prediction = 'No, this model predicts the customer will not churn.'
 else: 
