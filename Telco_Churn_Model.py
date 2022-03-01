@@ -7,12 +7,12 @@ st.write("This model predicts if a customer will churn.")
 
 loaded_GBC = joblib.load('GBC.joblib')
 
-Avg_Calls = st.number_input('Average number of calls made', min_value=0)
+Avg_Calls = st.number_input('Average weekend calls in seconds', min_value=0)
 Complaint_Code = st.selectbox('Complaint type', ['Billing Problem', 'Call Quality', 'Moving', 'Check Account', 'Inaccurate Sales Information', 'Pricing'])
-Account_Age = st.number_input('Age of account', min_value=10)
+Account_Age = st.number_input('Age of account holder', min_value=10)
 Avg_Days_Delinquent = st.number_input('Average number of days the customer is late on payment', min_value=0)
 Percent_Increase_MOM = st.number_input('Month-over-month percentage billing increase', min_value=-1.0)
-Avg_Calls_Weekdays = st.number_input('Average number of calls made on weekdays', min_value=0)
+Avg_Calls_Weekdays = st.number_input('Average weekday calls in seconds', min_value=0)
 Current_Bill_Amt = st.number_input("Customer's current bill amount", min_value=0)
 
 
@@ -39,3 +39,4 @@ if prediction == 0:
 else: 
     prediction = 'Yes, this model predicts the customer will churn'
 st.write('Is this customer predicted to churn? {}'.format(prediction))
+
